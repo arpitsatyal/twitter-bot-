@@ -18,17 +18,16 @@ var T = new Twit(config)
 
 function read2 () {
     let lyrics = getLyrics().split('.')
-    lyrics.forEach(lyric => {
-        setInterval(tweetIt, 5000, lyric)
-    })
-
+    setInterval(tweetIt, 5000, lyrics)
 }
 read2()
 
 function tweetIt(toSend) {
+    let lyrics = getLyrics().split('.')
+    let random = Math.floor(Math.random() * lyrics.length)
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `${r}: ${toSend}`
+        status: `${r}: ${toSend[random]}`
     }
 
     T.post('statuses/update', tweet, tweeted)
