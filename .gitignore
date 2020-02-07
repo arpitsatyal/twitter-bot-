@@ -2,3 +2,5 @@ config.js
 node_modules/
 details.txt
 lyrics.txt
+demo.js
+lyrics.js

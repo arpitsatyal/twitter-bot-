@@ -1,21 +1,24 @@
 let Twit = require('twit')
 let config = require('./config')
-let getLyrics = require('./lyrics')
+let fs = require('fs')
 
 var T = new Twit(config)
 
-function read2 () {
-    let lyrics = getLyrics().split('.')
-    setInterval(tweetIt, 5000, lyrics)
+function read() {
+    return new Promise((resolve, reject) => {
+        fs.readFile('lyrics.txt', 'utf-8', function (err, done) {
+            if (err) console.log(err)
+            resolve(done)
+        })
+    })
 }
-read2()
+read()
+.then(data => setInterval(tweetIt, 5000, data.toString()))
 
 function tweetIt(toSend) {
-    let lyrics = getLyrics().split('.')
-    let random = Math.floor(Math.random() * lyrics.length)
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `${r}: ${toSend[random]}`
+        status: `${r}: ${toSend}`
     }
 
     T.post('statuses/update', tweet, tweeted)
