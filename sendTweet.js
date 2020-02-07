@@ -1,24 +1,34 @@
 let Twit = require('twit')
 let config = require('./config')
 let fs = require('fs')
+let getLyrics = require('./lyrics')
 
 var T = new Twit(config)
 
-function read() {
-    return new Promise((resolve, reject) => {
-        fs.readFile('lyrics.txt', 'utf-8', function (err, done) {
-            if (err) console.log(err)
-            resolve(done)
-        })
+// function read() {
+//     return new Promise((resolve, reject) => {
+//         fs.readFile('lyrics.txt', 'utf-8', function (err, done) {
+//             if (err) console.log(err)
+//             resolve(done)
+//         })
+//     })
+// }
+// read()
+// .then(data => setInterval(tweetIt, 5000, data.toString()))
+
+function read2 () {
+    let lyrics = getLyrics().split('.')
+    lyrics.forEach(lyric => {
+        setInterval(tweetIt, 5000, lyric)
     })
+
 }
-read()
-.then(data => setInterval(tweetIt, 5000, data.toString()))
+read2()
 
 function tweetIt(toSend) {
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `ok, ${toSend}: ${r}`
+        status: `${r}: ${toSend}`
     }
 
     T.post('statuses/update', tweet, tweeted)
@@ -31,3 +41,4 @@ function tweetIt(toSend) {
         }
     }
 }
+

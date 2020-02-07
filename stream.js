@@ -6,6 +6,7 @@ var T = new Twit(config)
 // stream is used for events like followed, likes etc
 // fucking twitter api 
 // stream is deprecated now :/
+
 let stream = T.stream('statuses/filter', { track: '@iKanteee' })
 stream.on('follow', followed)
 

@@ -4,7 +4,7 @@ var T = new Twit(config)
 let fs = require('fs')
 
 let params = {
-    q: 'boring james milner',
+    q: '@iKanteee',
     count: 5
 }
 T.get('search/tweets', params, gotData)
