@@ -1,24 +1,33 @@
 let Twit = require('twit')
 let config = require('./config')
+let fs = require('fs')
 
 var T = new Twit(config)
 
-tweetIt()
-setInterval(tweetIt, 1000*20)
+function read() {
+    return new Promise((resolve, reject) => {
+        fs.readFile('lyrics.txt', 'utf-8', function (err, done) {
+            if (err) console.log(err)
+            resolve(done)
+        })
+    })
+}
+read()
+.then(data => setInterval(tweetIt, 5000, data.toString()))
 
-function tweetIt(txt) {
+function tweetIt(toSend) {
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `plz ignore, this account is on development mode: ${r}`
+        status: `ok, ${toSend}: ${r}`
     }
-    
+
     T.post('statuses/update', tweet, tweeted)
-    
+
     function tweeted(err, data, response) {
-        if (err) { 
-        console.log('something went wrong..', err)
+        if (err) {
+            console.log('something went wrong..', err)
         } else {
-        console.log('tweet sent!')
+            console.log('tweet sent!')
         }
     }
 }
