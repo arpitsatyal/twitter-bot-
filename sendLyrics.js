@@ -1,21 +1,22 @@
 let Twit = require('twit')
 let config = require('./config')
-let getLyrics = require('./lyrics')
+let geniusLyrics = require('./genius')
 var T = new Twit(config)
 
-function read2 () {
-    let lyrics = getLyrics().split('.')
+async function read2 () {
+    let lyrics = await geniusLyrics()
     setInterval(tweetIt, 5000, lyrics)
 }
 read2()
 
-function tweetIt(toSend) {
-    let lyrics = getLyrics().split('.')
+async function tweetIt(toSend) {
+    let lyrics = await geniusLyrics()
     let random = Math.floor(Math.random() * lyrics.length)
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `${r}: ${toSend[random]}`
+        status: `${r}: ${toSend.substr(random, 20)}`
     }
+    // console.log(tweet)
 
     T.post('statuses/update', tweet, tweeted)
 
@@ -27,4 +28,3 @@ function tweetIt(toSend) {
         }
     }
 }
-

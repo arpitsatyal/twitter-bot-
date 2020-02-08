@@ -2,5 +2,6 @@ config.js
 node_modules/
 details.txt
 lyrics.txt
+geniusConfig.js
 demo.js
 lyrics.js

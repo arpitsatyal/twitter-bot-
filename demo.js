@@ -4,6 +4,7 @@ function getLyrics() {
 
 	function read() {
 		let lyrics = getLyrics().split('.')
+		console.log(lyrics)
 		setInterval(toTweet, 5000, lyrics)
 	}
 
@@ -12,7 +13,7 @@ function getLyrics() {
 	function toTweet(txt) {
 		let lyrics = getLyrics().split('.')
 		let r = Math.floor(Math.random() * lyrics.length)
-		console.log(txt[r])
+		// console.log(txt[r])
 }
 
 
