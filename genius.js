@@ -5,7 +5,7 @@ const Genius = new genius.Client(gConfig.clientAccessToken)
 // const search = Genius.findTrack('starless').then(data => console.log(data.response.hits[0]))
 
 async function getLyric() {
-    const search = await Genius.findTrack('bloodhail have a nice')
+    const search = await Genius.findTrack('born under punches talking heads')
     // console.log(typeof(search))
     const url = await Genius.getUrl(search)
     const lyricsJSON = await Genius.getLyrics(url)

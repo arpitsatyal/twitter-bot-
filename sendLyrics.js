@@ -10,9 +10,7 @@ async function read2 () {
 read2()
 
 async function tweetIt(toSend) {
-    let lyrics = await geniusLyrics()
     let random = Math.floor(Math.random() * 180)
-    let r = Math.floor(Math.random() * 100)
     let tweet = {
         status: `${toSend.substr(random, Math.min(random))}`
     }
