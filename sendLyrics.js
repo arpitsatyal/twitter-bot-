@@ -11,12 +11,11 @@ read2()
 
 async function tweetIt(toSend) {
     let lyrics = await geniusLyrics()
-    let random = Math.floor(Math.random() * lyrics.length)
+    let random = Math.floor(Math.random() * 180)
     let r = Math.floor(Math.random() * 100)
     let tweet = {
-        status: `${r}: ${toSend.substr(random, 20)}`
+        status: `${toSend.substr(random, Math.min(random))}`
     }
-    // console.log(tweet)
 
     T.post('statuses/update', tweet, tweeted)
 
