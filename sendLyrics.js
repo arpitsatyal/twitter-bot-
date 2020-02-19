@@ -9,7 +9,7 @@ async function read2 () {
 }
 read2()
 
-async function tweetIt(toSend) {
+function tweetIt(toSend) {
     let random = Math.floor(Math.random() * 180)
     let tweet = {
         status: `${toSend.substr(random, Math.min(random))}`

@@ -15,7 +15,6 @@ function createRandom(value) {
     let r 
     typeof(value) === 'number' ? r =  Math.floor(Math.random() * value) :  r =  Math.floor(Math.random() * value.length)
     return r
-
 }
 
 function tweetIt() {
