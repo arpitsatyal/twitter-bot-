@@ -12,10 +12,10 @@ async function read2 () {
 read2()
 
 function createRandom(value) {
-    if(typeof(value) === 'number') {
-    return Math.floor(Math.random() * value)
-    } 
-    return Math.floor(Math.random() * value.length)
+    let r 
+    typeof(value) === 'number' ? r =  Math.floor(Math.random() * value) :  r =  Math.floor(Math.random() * value.length)
+    return r
+
 }
 
 function tweetIt() {
