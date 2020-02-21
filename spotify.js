@@ -19,7 +19,7 @@ async function getArtists() {
         }
 
         // console.log(result) => consist of all the iteration's results in a single array
-        // console.log(x) => returns the result of the last iteration only
+        // console.log(x) => outside loop; returns the result of the last iteration only
 
         let flattedResult = result.flat()
         let finalResults = []
@@ -29,5 +29,6 @@ async function getArtists() {
         return finalResults
     } catch (e) { console.log(e) }
 }
-getArtists().then(res => console.log(res))
+// getArtists().then(res => console.log(res))
+module.exports = getArtists
 

@@ -1,8 +1,8 @@
 let Twit = require('twit')
 let config = require('./config')
 var T = new Twit(config)
+let getArtists = require('./spotify')
 
-let bands = ['radiohead', 'green day','taylor swift', 'one direction']
 let bestOrWorst = ['Best', 'worst']
 let isBetter = ['better', 'worse']
 
@@ -17,14 +17,16 @@ function createRandom(value) {
     return r
 }
 
-function tweetIt() {
-    let r = createRandom(100)
-    let random = createRandom(bestOrWorst)
-    let randomTwo =  createRandom(bands)
+async function tweetIt() {
+    try {
+    let allBands = await getArtists()
+    let random = createRandom(allBands)
+    let randomTwo =  createRandom(allBands)
     let randomThree = createRandom(bestOrWorst)
+    let randomFour = createRandom(bestOrWorst)
 
     let tweet = {
-       status: `${r} the ${bestOrWorst[random]} ${bands[random]} album is ${isBetter[random]} than the ${bestOrWorst[randomThree]} ${bands[randomTwo]} album`
+       status: `the ${bestOrWorst[randomThree]} ${allBands[random]} album is ${isBetter[randomThree]} than the ${bestOrWorst[randomFour]} ${allBands[randomTwo]} album`
     }
 
     T.post('statuses/update', tweet, tweeted)
@@ -36,6 +38,7 @@ function tweetIt() {
             console.log('tweet sent!')
         }
     }
+} catch (e) { console.log(e) }
 }
 
 
