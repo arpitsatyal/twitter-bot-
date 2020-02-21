@@ -12,7 +12,6 @@ Genius.findArtistByID(r).then(band => {
 }).catch(e => console.log(e))
 }
 
-
 async function getLyric() {
     const search = await Genius.findTrack('is this it the strokes')
     // console.log(typeof(search))
