@@ -4,7 +4,7 @@ let { userAccessToken } = require('./spotifyConfig')
 async function getArtists() {
     try {
         const result = []
-        for (let i = 1960; i < 2020; i++) {
+        for (let i = 1960; i < 1990; i++) {
             let data = await fetch(`https://api.spotify.com/v1/search?q=year%3A${i}&type=artist&market=US`, {
                 method: "GET",
                 headers: {
